@@ -1,0 +1,31 @@
+@layout('emails/layout')
+@set('pageTitle', `Validation de l'inscription`)
+@section('body')
+    @!component('emails/components/image', {
+        src: imageFolder + 'emails/authentication/register.jpg',
+    })
+    @!component('emails/components/heading', {
+        title: `Nouvelle adresse mail`,
+        text: `Merci ${user.username} d'avoir fait cette mise à jour, Nous allons pouvoir redirigé nos messages sur cette adresse`,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Vous avez récemment fait une demande de changement d'adresse mail sur le site Ourway.`,
+            `­`,
+            `Il ne vous reste qu'une seule étape simple pour valider cette mise à jour, la validation de cette nouvelle adresse. 
+            Pour cela rien de plus simple il vous suffit de cliquer sur le bouton ci-dessous, vous serez ensuite redirigé vers le site Ourway.`,
+        ],
+    })
+    @!component('emails/components/button', {
+        text: `Confirmer mon adresse mail`,
+        href: link,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Si vous n'êtes pas l'auteur de cette demande, ne vous inquiétez pas, laissez juste cet e-mail de côté ou déplacez-le dans la corbeille.`,
+        ],
+    })
+    @include('emails/footer')
+@end

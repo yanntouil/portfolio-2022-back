@@ -1,0 +1,92 @@
+@set('background', '#292524')
+@set('color', '#ffffff')
+@set('linkColor', '#7dd3fc')
+<tr>
+    <td valign="top">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+            <tbody>
+                <tr>
+                    <td class="r2-c" align="center">
+                        <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td class="r28-i" style="background-color: {{background}}">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="100%" valign="top" class="r5-c" style="font-weight: normal;">
+                                                        <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r6-o" style="table-layout: fixed; width: 100%;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="nl2go-responsive-hide" width="15" style="font-size: 0px; line-height: 1px;">­</td>
+                                                                    <td valign="top" class="r7-i">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="r11-c" align="left">
+                                                                                        <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r12-o" style="table-layout: fixed; width: 100%;">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td align="center" valign="top" class="r30-i nl2go-default-textstyle" style="font-family: 'Montserrat', arial, helvetica, sans-serif; color: {{color}}; font-size: 18px; line-height: 1.5; text-align: center;">
+                                                                                                        <div>
+                                                                                                            <br />
+                                                                                                            <p style="margin: 0px; font-size: 14px;">
+                                                                                                                <img src="{{imageFolder}}logo-square.png" alt="101 Studios" width="42" style="border:0px none; display:inline-block">
+                                                                                                                <br />
+                                                                                                                <b>Ourway S.A.</b>
+                                                                                                            </p>
+                                                                                                            <p style="margin: 0px; font-size: 12px;">
+                                                                                                                34 rue du village<br />
+                                                                                                                L-6183 Gonderange<br />
+                                                                                                                <a href="https://www.ourway.io" style="color: {{linkColor}}; text-decoration:none;" target="_blank">www.ourway.io</a>
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr><td class="r11-c" align="left"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r12-o" style="table-layout: fixed; width: 100%;"><tbody><tr><td align="center" valign="top" class="r30-i nl2go-default-textstyle" style="font-family: 'Montserrat', arial, helvetica, sans-serif; color: rgb(59, 63, 68); font-size: 18px; line-height: 1.5; text-align: center;"><div><p style="margin: 0px; font-size: 14px;">­</p></div></td></tr></tbody></table></td></tr>
+                                                                                @if(user.email)
+                                                                                    <tr>
+                                                                                        <td class="r11-c" align="left">
+                                                                                            <table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r12-o" style="table-layout: fixed; width: 100%;">
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td align="center" valign="top" class="r30-i nl2go-default-textstyle" style="font-family: 'Montserrat', arial, helvetica, sans-serif; color: {{color}}; font-size: 18px; line-height: 1.5; text-align: center;">
+                                                                                                            <div>
+                                                                                                                <p style="margin: 0px; font-size: 14px;">
+                                                                                                                    Ce message a été envoyé à {{user.email}}
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr><td class="r32-c" align="center"><table cellspacing="0" cellpadding="0" border="0" role="presentation" width="100%" class="r3-o" style="table-layout: fixed; width: 100%;"><tbody><tr class="nl2go-responsive-hide"><td height="15" style="font-size: 15px; line-height: 15px;">­</td></tr></tbody></table></td></tr>
+                                                                                @end
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td class="nl2go-responsive-hide" width="15" style="font-size: 0px; line-height: 1px;">­</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="nl2go-responsive-hide"><td height="20" style="font-size: 20px; line-height: 20px; background-color: {{background}};">­</td></tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </td>
+</tr>

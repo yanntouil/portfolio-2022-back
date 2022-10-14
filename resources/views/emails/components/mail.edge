@@ -1,0 +1,115 @@
+@layout('emails/layout')
+@section('body')
+
+    @include('emails/header')
+
+    @!component('emails/heading', {
+        title: `A new email address`,
+        text: `Thank you for changing your email address on Hercule, we will be able to contact you again.`,
+    })
+
+    @!component('emails/image', {
+        src: imageFolder + 'placeholder-600x200.png',
+    })
+
+    @!component('emails/paragraphs-stretch', {
+        paragraphs: [
+            `You recently requested a change of e-mail address on the Hercule website. There is only one simple step left for you to save this change, the e-mail validation. Nothing could be simpler, just click on the button below and you will be redirected to Hercule website.`,
+        ],
+    })
+
+    @!component('emails/button', {
+        text: `Valid my new e-mail address`,
+        href: redirect,
+    })
+
+    @!component('emails/paragraphs-stretch', {
+        paragraphs: [
+            `If you are not the author of this request, don't worry, just leave this email aside or move it to the trash.`,
+        ],
+    })
+
+    {{--  @!component('emails/title', {
+        title: `Share your story’s most important sub-headline`,
+    })
+
+    @!component('emails/content-row', {
+        title: `What's new on Hercule`,
+        text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, At vero eos et.`,
+        src: '//via.placeholder.com/270x180/f3f6f9/89a0b2',
+    })  --}}
+
+    {{--  @!component('emails/image', {
+        src: '//via.placeholder.com/600x150/f3f6f9/89a0b2',
+    })  --}}
+    {{--  @!component('emails/title', {
+        title: `Share your story’s most important sub-headline`,
+    })  --}}
+    {{--  @!component('emails/paragraphs', {
+        paragraphs: [
+            `Continue your story by sharing some interesting details and final words to conclude.`,
+            `­`,
+            `Finally, describe what action your readers can take or where they can go to learn more.`,
+        ],
+    })  --}}
+    {{--  @!component('emails/button', {
+        text: `Call to action`,
+        href: '#',
+    })  --}}
+    {{--  @!component('emails/image-stretch', {
+        src: '//via.placeholder.com/570x400/f3f6f9/89a0b2',
+    })  --}}
+
+    {{--  @!component('emails/content-row', {
+        title: `Some title here`,
+        text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, At vero eos et.`,
+        src: '//via.placeholder.com/270x180/f3f6f9/89a0b2',
+    })  --}}
+
+    {{--  @!component('emails/content-col', {
+        title: `Some title here`,
+        text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua, At vero eos et.`,
+        src: '//via.placeholder.com/570x380/f3f6f9/89a0b2',
+        button: {
+            text: `Call to action`,
+            href: '#',
+        }
+    })  --}}
+
+    {{--  @!component('emails/content-cols', {
+        cols: [
+            {
+                title: `Some title here`,
+                text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.`,
+                src: '//via.placeholder.com/169x113/f3f6f9/89a0b2',
+            },
+            {
+                title: `Some title here`,
+                text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.`,
+                src: '//via.placeholder.com/169x113/f3f6f9/89a0b2',
+            },
+            {
+                title: `Some title here`,
+                text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.`,
+                src: '//via.placeholder.com/169x113/f3f6f9/89a0b2',
+            },
+        ]
+    })  --}}
+
+    {{--  @!component('emails/paragraphs-stretch', {
+        paragraphs: [
+            `Continue your story by sharing some interesting details and final words to conclude.`,
+            `­`,
+            `Finally, describe what action your readers can take or where they can go to learn more.`,
+        ],
+    })  --}}
+
+    {{--  @!component('emails/links', {
+        links: [
+            { href: '#', text: `Lien 1` },
+            { href: '#', text: `Lien 2` },
+            { href: '#', text: `Lien 3` },
+        ],
+    })  --}}
+    @include('emails/footer')
+@end
