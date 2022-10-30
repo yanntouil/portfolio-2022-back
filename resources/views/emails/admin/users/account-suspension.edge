@@ -1,0 +1,29 @@
+@layout('emails/layout')
+@set('pageTitle', `Suspension de votre compte`)
+@section('body')
+    @!component('emails/components/image', {
+        src: imageFolder + 'emails/admin/users/account-suspension.jpg',
+    })
+    @!component('emails/components/heading', {
+        title: `Suspension de votre compte`,
+        text: `Votre compte sur Ourway a été supendu suite à un manquement à la charte communautaire`,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            message,
+            'Vous pouvez faire une demande de restitution...',
+        ],
+    })
+    @!component('emails/components/button', {
+        text: `Confirmer mon adresse mail`,
+        href: link,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Si vous n'êtes pas l'auteur de cette demande, ne vous inquiétez pas, laissez juste cet e-mail de côté ou déplacez-le dans la corbeille.`,
+        ],
+    })
+    @include('emails/footer')
+@end

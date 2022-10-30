@@ -1,18 +1,14 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { MailRequestTypes } from 'App/Models/MailRequest'
 
-export default class SignInValidator {
+export default class CreateAsUserValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    username: schema.string.optional({ trim: true }, [
-      rules.maxLength(25),
-      rules.minLength(3),
-    ]),
-    email: schema.string.optional({ trim: true }, [
-      rules.email(),
-    ]),
-    password: schema.string(),
+    subject: schema.string({ trim: true }, [ rules.maxLength(50) ]),
+    message: schema.string({ trim: true }, [ rules.maxLength(255) ]),
+    type: schema.enum(MailRequestTypes),
   })
 
   public messages: CustomMessages = {}

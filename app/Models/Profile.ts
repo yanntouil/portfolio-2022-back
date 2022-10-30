@@ -49,6 +49,8 @@ export default class Profile extends BaseModel {
 
   @column()
   public avatar: string
+  @column()
+  public avatarFile: string
 
   /**
    * Relations

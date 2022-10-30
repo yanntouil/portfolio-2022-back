@@ -3,12 +3,15 @@ import { BaseModel, beforeCreate, BelongsTo, belongsTo, column, HasMany, hasMany
 import File from './File'
 import User from './User'
 import * as uuid from 'uuid'
+import CamelCaseNamingStrategy from 'App/Strategies/CamelCaseNamingStrategy'
 
 
 /**
  * Folder model
  */
 export default class Folder extends BaseModel {
+  public static namingStrategy = new CamelCaseNamingStrategy()
+
   @column({ isPrimary: true })// uuid
   public id: string
 

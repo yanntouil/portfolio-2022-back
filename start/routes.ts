@@ -39,6 +39,9 @@ Route.get('/test', async () => {
   return await View.render('emails/authentication/register', { user: {email: 'yann@101.lu', username: 'Yann'}, link: '127.0.0.1/register-validation/a1z1e2e85ds8f4s4198ve4r4g9er1ge'})
 })
 
+
+
+
 /**
  * Authentication
  */
@@ -52,10 +55,43 @@ Route.group(() => {
   Route.get('/token/:token', 'AuthenticationController.token')
   Route.put('/session/meta', 'AuthenticationController.sessionMetaUpdate').middleware(['auth'])
   Route.put('/', 'AuthenticationController.update').middleware(['auth'])
+  Route.delete('/', 'AuthenticationController.delete').middleware(['auth'])
+  Route.put('/recover', 'AuthenticationController.recover').middleware(['auth'])
   Route.put('/profile', 'AuthenticationController.profile').middleware(['auth'])
   Route.post('/profile/avatar', 'AuthenticationController.profileAvatarUpload').middleware(['auth'])
   Route.delete('/profile/avatar', 'AuthenticationController.profileAvatarDelete').middleware(['auth'])
-}).prefix('api/authentication')
+})
+.prefix('api/authentication')
+
+
+
+
+/**
+ * Admin
+ */
+Route.group(() => {
+
+
+  /**
+   * Users
+   */
+  Route.group(() => {
+    Route.get('/', 'AdminUsersController.index')
+    Route.post('/', 'AdminUsersController.create')
+    Route.put('/:userId', 'AdminUsersController.update')
+    Route.get('/:userId', 'AdminUsersController.read')
+    Route.delete('/:userId', 'AdminUsersController.delete')
+    Route.put('/:userId/suspend', 'AdminUsersController.suspend')
+    Route.post('/:userId/profile/avatar', 'AdminUsersController.profileAvatarUpload')
+    Route.delete('/:userId/profile/avatar', 'AdminUsersController.profileAvatarDelete')
+  })
+  .prefix('/user')
+  .where('userId', Route.matchers.uuid())
+
+
+})
+.prefix('api/admin')
+.middleware(['auth', 'admin'])
 
 
 /**

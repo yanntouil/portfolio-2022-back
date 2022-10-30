@@ -8,6 +8,7 @@
 import Env from '@ioc:Adonis/Core/Env'
 import { driveConfig } from '@adonisjs/core/build/config'
 import Application from '@ioc:Adonis/Core/Application'
+import foldersConfig from './folders'
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,7 @@ export default driveConfig({
       | files.
       |
       */
-      root: Application.tmpPath('uploads'),
+      root: Application.tmpPath(foldersConfig.storage),
 
       /*
       |--------------------------------------------------------------------------

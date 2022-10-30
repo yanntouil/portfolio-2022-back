@@ -1,18 +1,20 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, beforeCreate, afterCreate, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, beforeCreate, afterCreate, hasOne, HasOne, scope, PreloaderContract } from '@ioc:Adonis/Lucid/Orm'
 import Profile from './Profile'
 import Session from './Session'
 import * as uuid from 'uuid'
+import CamelCaseNamingStrategy from 'App/Strategies/CamelCaseNamingStrategy'
 
 
-export type UserRole = 'member' | 'writer' | 'admin'
-export type UserStatus = 'pending' | 'active' | 'deleted' | 'suspended'
+
 
 /**
  * User Model
  */
 export default class User extends BaseModel {
+  public static namingStrategy = new CamelCaseNamingStrategy()
+
   @column({ isPrimary: true })// uuid
   public id: string
 
@@ -25,7 +27,7 @@ export default class User extends BaseModel {
   @column({ serializeAs: null })// used to log in the user if the password is lost
   public authenticationToken: string
 
-  @column.dateTime({ serializeAs: 'recoverPassword' })// use to avoid too many requests on recover password
+  @column.dateTime({ serializeAs: null })// use to avoid too many requests on recover password
   public recoverPassword: DateTime | null
 
   @column({ serializeAs: null})// use in login and as contact
@@ -68,6 +70,9 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt' })
   public updatedAt: DateTime
 
+
+
+
   /**
    * Before save hook
    */
@@ -83,9 +88,8 @@ export default class User extends BaseModel {
    */
   @beforeCreate()
   public static beforeCreateHook(user: User) {
-    if (!user.id) {
-      user.id = uuid.v4()
-    }
+    user.id ??= uuid.v4()
+    user.role ??= 'member'
   }
 
   /**
@@ -98,17 +102,76 @@ export default class User extends BaseModel {
       user.related('session').create({}),
     ])
   }
+
+
+
+
+  /**
+   * Scopes
+   */
+  public static active = scope((query) => {
+    query.where('status', 'active')
+  })
+
+
+
+
+  /**
+   * Serialize
+   */
+  serializeOwner() {
+    return {
+      ...this.serialize(),
+      email: this.email,
+      pendingEmail: this.pendingEmail,
+      rememberMeToken: this.rememberMeToken,
+    } as UserOwner
+  }
+  public serializeAdmin() {
+    return {
+      ...this.serialize(),
+      email: this.email,
+      pendingEmail: this.pendingEmail,
+    } as UserAdmin
+  }
+
+
+
+
+  /**
+   * Loader
+   */
+  public static async memberPreloader(loader: PreloaderContract<User>) {
+    return loader
+      .load('profile')
+  }
+  public static async ownerPreloader(loader: PreloaderContract<User>) {
+    return loader
+      .load('session')
+      .load('profile')
+  }
+  public static async adminPreloader(loader: PreloaderContract<User>) {
+    return loader
+      .load('session')
+      .load('profile')
+  }
+
+
 }
 
 
 
 /**
- * Serialize owner data
+ * Types
  */
-export const userOwner = (user: User) => ({
-  ...user.serialize(),
-  email: user.email,
-  pendingEmail: user.pendingEmail,
-  rememberMeToken: user.rememberMeToken,
-  // ...user.serialize({ fields: { pick: [ 'email', 'pendingEmail', 'rememberMeToken' ]}}),
-})
+export type UserRole = 'member' | 'writer' | 'admin'
+export type UserStatus = 'pending' | 'active' | 'deleted' | 'suspended'
+export type UserMember = Pick<User, 'id' | 'username' | 'role' | 'status'> & {
+  profile: Omit<Profile, 'id'>
+}
+export type UserOwner = UserMember & Pick<User, 'email' | 'pendingEmail' | 'rememberMeToken'> & {
+  session: Omit<Session, 'id'>
+}
+export type UserAdmin = UserMember & Pick<User, 'email' | 'pendingEmail'> & {
+  session: Omit<Session, 'id'>
+}

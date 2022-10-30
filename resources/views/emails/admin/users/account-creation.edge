@@ -1,0 +1,31 @@
+@layout('emails/layout')
+@set('pageTitle', `Validation de l'inscription`)
+@section('body')
+    @!component('emails/components/image', {
+        src: imageFolder + 'emails/admin/users/account-creation.jpg',
+    })
+    @!component('emails/components/heading', {
+        title: `Inscription sur Ourway`,
+        text: `Vous avez été inscrit sur Ourway par un administrateur. Nous sommes heureux de vous avoir parmi nous`,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Suite à cette inscription, vous allez avoir accès à votre compte sur Ourway.`,
+            `­`,
+            `Mais avant cela vous devez valider votre adresse mail. 
+            Pour cela rien de plus simple il vous suffit de cliquer sur le bouton ci-dessous, vous serez ensuite redirigé vers le site Ourway.`,
+        ],
+    })
+    @!component('emails/components/button', {
+        text: `Confirmer mon adresse mail`,
+        href: link,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Si vous n'êtes pas l'auteur de cette demande, ne vous inquiétez pas, laissez juste cet e-mail de côté ou déplacez-le dans la corbeille.`,
+        ],
+    })
+    @include('emails/footer')
+@end

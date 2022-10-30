@@ -3,12 +3,15 @@ import { BaseModel, beforeCreate, belongsTo, BelongsTo, column } from '@ioc:Adon
 import Folder from './Folder'
 import User from './User'
 import * as uuid from 'uuid'
+import CamelCaseNamingStrategy from 'App/Strategies/CamelCaseNamingStrategy'
 
 
 /**
  * File model
  */
 export default class File extends BaseModel {
+  public static namingStrategy = new CamelCaseNamingStrategy()
+
   @column({ isPrimary: true })// uuid
   public id: string
 
@@ -64,5 +67,5 @@ export default class File extends BaseModel {
     if (!file.id) {
       file.id = uuid.v4()
     }
-   }
+  }
  }

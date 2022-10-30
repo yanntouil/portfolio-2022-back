@@ -22,7 +22,8 @@ export default class extends BaseSchema {
       table.string('email').notNullable().defaultTo('')
       table.json('links').notNullable().defaultTo([])
       
-      table.string('avatar', 255).nullable().defaultTo('')
+      table.string('avatar', 255).nullable()
+      table.string('avatar_file', 255).nullable()
     })
   }
 

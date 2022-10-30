@@ -1,0 +1,28 @@
+@layout('emails/layout')
+@set('pageTitle', `Validation de l'inscription`)
+@section('body')
+    @!component('emails/components/image', {
+        src: imageFolder + 'emails/admin/users/account-deletion.jpg',
+    })
+    @!component('emails/components/heading', {
+        title: `Au revoir ${user.username}`,
+        text: `Nous avons eu plaisir de vous avoir parmis nous`,
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Ce mail à été généré suit à la suppression de votre compte sur Ourway`,
+            `­`,
+            `Suite à cette suppression, nous avons retiré toute les informations personnels vous concernant dans notre base de donnée.
+            Seule les publications, messages et commentaires que vous avez posté persisteront mais de façon anonyme conformement au loi du RGPD.
+            `,
+        ],
+    })
+
+    @!component('emails/components/paragraphs-stretch', {
+        paragraphs: [
+            `Si vous n'êtes pas l'auteur de cette demande, ne vous inquiétez pas, laissez juste cet e-mail de côté ou déplacez-le dans la corbeille.`,
+        ],
+    })
+    @include('emails/footer')
+@end
